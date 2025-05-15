@@ -15,6 +15,7 @@ help:
 
 install:
 	$(MAKE) install-dependencies
+	composer install
 	$(MAKE) build
 
 db:
