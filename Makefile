@@ -8,6 +8,7 @@ export
 
 help:
 	@echo "make install  - Установить проект локально"
+	@echo "make db       - Инициализировать базу данных с тестовыми данными"
 	@echo "make up       - Запустить проект"
 	@echo "make down     - Остановить проект"
 	@echo "make delete   - Удалить проект"
