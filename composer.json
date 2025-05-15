@@ -1,0 +1,17 @@
+{
+    "name": "gewoehnlich/kalashnikov",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "Gewoehnlich\\Kalashnikov\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "gewoehnlich",
+            "email": "oomyse@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {}
+}
