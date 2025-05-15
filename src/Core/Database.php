@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Core;
+namespace Gewoehnlich\Kalashnikov\Core;
 
 use PDO;
 use PDOException;
