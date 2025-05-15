@@ -15,14 +15,13 @@ class WordService
         $this->repository = new WordRepository();
     }
 
-    public function index(): array
+    public function index(): string
     {
         $dto = new WordDTO();
         $validator = new WordValidator($dto);
         $validator->validate();
 
         $result = $this->repository->index($dto);
-
-        return $_GET;
+        return $result;
     }
 }

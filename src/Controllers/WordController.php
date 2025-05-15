@@ -19,7 +19,17 @@ class WordController
             $response = $this->wordService->index();
 
             http_response_code(201);
-            echo json_encode(['message' => 'Success message', 'word' => $response]);
+            if (!empty($response)) {
+                echo json_encode(
+                    ['message' => 'Найдена рифма!', 'word' => $response],
+                    JSON_UNESCAPED_UNICODE
+                );
+            } else {
+                echo json_encode(
+                    ['message' => 'Рифма не найдена :('],
+                    JSON_UNESCAPED_UNICODE
+                );
+            }
         } catch (\Exception $e) {
             http_response_code(400);
             echo json_encode(['error' => $e->getMessage()]);

@@ -15,37 +15,25 @@ class WordRepository
         $this->db = Database::getConnection();
     }
 
-    public function index(WordDTO $dto)
+    public function index(WordDTO $dto): string
     {
         $ending = mb_substr($dto->word, $dto->accentPosition - 1);
 
-        /*$stmt = $this->db->prepare("*/
-        /*    SELECT * FROM words*/
-        /*");*/
-        /**/
-        /*$stmt->execute([]);*/
-
         $stmt = $this->db->prepare("
-            SELECT word FROM words
-            WHERE
-                (
-                    accent_position < length AND
-                    SUBSTRING(word, accent_position) = :ending
-                )
-                OR
-                (
-                    accent_position = length AND
-                    RIGHT(word, 2) = :ending
-                )
+            SELECT * FROM words
         ");
 
-        $stmt->execute([
-            'ending' => $ending,
-        ]);
+        $stmt->execute([]);
 
-        $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        print_r($result);
+        $result = $stmt->fetchAll();
 
-        return $result;
+        foreach ($result as $row) {
+            $word = mb_convert_encoding($row['word'], 'Windows-1252', 'UTF-8');
+            if (str_ends_with($word, $ending) && $word != $dto->word) {
+                return $word;
+            }
+        }
+
+        return '';
     }
 }
